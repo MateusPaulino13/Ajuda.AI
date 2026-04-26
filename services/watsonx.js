@@ -65,4 +65,4 @@ class WatsonxClient {
   }
 }
 
-modules.exports = new WatsonxClient();
+module.exports = new WatsonxClient();

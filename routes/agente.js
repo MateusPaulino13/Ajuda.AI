@@ -67,13 +67,13 @@ router.post("/conversar", async (req, res) => {
       etapa: etapa,
     });
   } catch (error) {
-    console.error("Erro no agente", error.response?.data || errror.message);
+console.error("Erro no agente", error.response?.data || error.message);
     res.status(500).json({ error: "Erro ao comunicar com o agente" });
   }
 });
 
 //pegar a proxima pergunta do onboarding
-router.get("onboarding/:etapa", (req, res) => {
+router.get("/onboarding/:etapa", (req, res) => {
   const etapa = parseInt(req.params.etapa);
   const pergunta = perguntas_onboarding[etapa];
 

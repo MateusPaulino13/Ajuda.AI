@@ -104,23 +104,23 @@
         <span class="question-number">Pergunta 2</span>
         <h2 class="question-text">Qual é o seu nível de experiência?</h2>
         <div class="options-list">
-          <!-- * Opção A - Iniciante -->
-          <button class="option-btn" onclick="nextQuestion(2)">
+        <!-- * Opção A - Iniciante -->
+          <button class="option-btn" data-opcao="A" onclick="selecionarOpcao(this, 2, 'A')">
             <span class="option-letter">A</span>
             <span class="option-text">Iniciante - Estou começando agora</span>
           </button>
           <!-- * Opção B - Intermediário -->
-          <button class="option-btn" onclick="nextQuestion(2)">
+          <button class="option-btn" data-opcao="B" onclick="selecionarOpcao(this, 2, 'B')">
             <span class="option-letter">B</span>
             <span class="option-text">Intermediário - Tenho alguma experiência</span>
           </button>
           <!-- * Opção C - Avançado -->
-          <button class="option-btn" onclick="nextQuestion(2)">
+          <button class="option-btn" data-opcao="C" onclick="selecionarOpcao(this, 2, 'C')">
             <span class="option-letter">C</span>
             <span class="option-text">Avançado - Trabalho na área</span>
           </button>
           <!-- * Opção D - Especialista -->
-          <button class="option-btn" onclick="nextQuestion(2)">
+          <button class="option-btn" data-opcao="D" onclick="selecionarOpcao(this, 2, 'D')">
             <span class="option-letter">D</span>
             <span class="option-text">Especialista - Tenho muitos anos de experiência</span>
           </button>
@@ -136,22 +136,22 @@
         <h2 class="question-text">Quanto tempo por semana você tem disponibilidade?</h2>
         <div class="options-list">
           <!-- * Opção A - 1 - 2 DIAS -->
-          <button class="option-btn" onclick="nextQuestion(3)">
+          <button class="option-btn" data-opcao="A" onclick="selecionarOpcao(this, 3, 'A')">
             <span class="option-letter">A</span>
             <span class="option-text">1-2 dias por semana</span>
           </button>
           <!-- * Opção B - 3 - 4 DIAS -->
-          <button class="option-btn" onclick="nextQuestion(3)">
+          <button class="option-btn" data-opcao="B" onclick="selecionarOpcao(this, 3, 'B')">
             <span class="option-letter">B</span>
             <span class="option-text">3-4 dias por semana</span>
           </button>
           <!-- * Opção C - 5 - 6 DIAS -->
-          <button class="option-btn" onclick="nextQuestion(3)">
+          <button class="option-btn" data-opcao="C" onclick="selecionarOpcao(this, 3, 'C')">
             <span class="option-letter">C</span>
             <span class="option-text">5-6 dias por semana</span>
           </button>
           <!-- * Opção D - 7 DIAS -->
-          <button class="option-btn" onclick="nextQuestion(3)">
+          <button class="option-btn" data-opcao="D" onclick="selecionarOpcao(this, 3, 'D')">
             <span class="option-letter">D</span>
             <span class="option-text">7 dias por semana</span>
           </button>
@@ -203,6 +203,9 @@
           <h2 class="completion-title">Obrigado pelas suas respostas!</h2>
           <!-- * Mensagem de confirmação -->
           <p class="completion-text">Suas respostas foram registradas com sucesso.</p>
+
+          <!-- * Container para recomendação da IA -->
+          <div id="recomendacaoIA" class="recomendacao-container"></div>
         </div>
       </div>
       <!-- * Fim do container de perguntas -->
