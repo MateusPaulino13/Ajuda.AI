@@ -1,0 +1,521 @@
+ /* ============================================
+   ESTILOS GLOBAIS E RESET
+   ============================================ */
+   
+   /* Reset global para remover margens e paddings padrão dos navegadores */
+   * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box; /* Garante que padding e border não afetem o tamanho total */
+    }
+
+    /* Estilos base do corpo da página */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Fontes modernas e legíveis */
+      background-color: #f0f7ff; /* Azul claro suave para o fundo */
+      min-height: 100vh; /* Garante que a página ocupe toda a altura da viewport */
+    }
+
+    /* ============================================
+   CABEÇALHO (HEADER)
+   ============================================ */
+   
+   /* Container principal do cabeçalho */
+    .header {
+      background: linear-gradient(135deg, #e0f2fe 0%, #ffffff 50%, #dbeafe 100%); /* Gradiente azul suave */
+      padding: 1rem 2rem; /* Espaçamento interno */
+      display: flex;
+      justify-content: space-between; /* Logo à esquerda, botão à direita */
+      align-items: center; /* Alinhamento vertical central */
+      border-bottom: 1px solid #bfdbfe; /* Linha divisória suave */
+      position: relative;
+      overflow: hidden; /* Permite elementos decorativos */
+    }
+
+    /* Elemento decorativo circular no canto superior direito */
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(147, 197, 253, 0.3) 0%, transparent 70%); /* Círculo azul transparente */
+      border-radius: 50%;
+    }
+
+    /* Elemento decorativo circular no canto inferior esquerdo */
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -60%;
+      left: 10%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(191, 219, 254, 0.4) 0%, transparent 70%); /* Círculo azul mais opaco */
+      border-radius: 50%;
+    }
+
+    /* ============================================
+   LOGO E IDENTIDADE VISUAL
+   ============================================ */
+   
+   /* Container do logo com ícone e texto */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem; /* Espaço entre ícone e texto */
+      z-index: 1; /* Fica acima dos elementos decorativos */
+    }
+
+    /* Ícone do logo - quadrado arredondado com gradiente azul */
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%); /* Gradiente azul vibrante */
+      border-radius: 10px; /* Cantos arredondados */
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Centraliza o SVG */
+    }
+
+    /* Estilo do SVG dentro do ícone */
+    .logo-icon svg {
+      width: 24px;
+      height: 24px;
+      color: white; /* Ícone branco para contraste */
+    }
+
+    /* Texto do logo */
+    .logo-text {
+      font-size: 1.25rem;
+      font-weight: 600; /* Negrito médio */
+      color: #1e40af; /* Azul escuro para legibilidade */
+    }
+
+    /* ============================================
+   BOTÃO DE LOGIN/ENTRAR
+   ============================================ */
+   
+   /* Botão de login com ícone e texto */
+    .btn-login {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem; /* Espaço entre ícone e texto */
+      padding: 0.625rem 1.25rem; /* Padding confortável */
+      background-color: white; /* Fundo branco */
+      border: 1px solid #93c5fd; /* Borda azul clara */
+      border-radius: 8px; /* Cantos levemente arredondados */
+      color: #2563eb; /* Texto azul */
+      font-weight: 500; /* Peso médio */
+      cursor: pointer; /* Indica que é clicável */
+      transition: all 0.2s ease; /* Animação suave */
+      z-index: 1; /* Acima dos elementos decorativos */
+      font-size: 0.875rem; /* Texto menor */
+    }
+
+    /* Efeito hover no botão de login */
+    .btn-login:hover {
+      background-color: #eff6ff; /* Fundo azul muito claro */
+      border-color: #60a5fa; /* Borda mais intensa */
+      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15); /* Sombra azul suave */
+    }
+
+    /* SVG do ícone de usuário no botão */
+    .btn-login svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* ============================================
+   CONTEÚDO PRINCIPAL
+   ============================================ */
+   
+   /* Container principal do conteúdo */
+    .main {
+      max-width: 700px; /* Largura máxima para legibilidade */
+      margin: 0 auto; /* Centraliza horizontalmente */
+      padding: 3rem 1.5rem; /* Espaçamento generoso */
+    }
+
+    /* ============================================
+   BARRA DE PROGRESSO
+   ============================================ */
+   
+   /* Container da barra de progresso */
+    .progress-container {
+      margin-bottom: 2rem; /* Espaço abaixo da barra */
+    }
+
+    /* Cabeçalho da barra com título e contador */
+    .progress-header {
+      display: flex;
+      justify-content: space-between; /* Título à esquerda, contador à direita */
+      align-items: center;
+      margin-bottom: 0.5rem; /* Espaço antes da barra */
+    }
+
+    /* Título "Progresso" */
+    .progress-title {
+      font-size: 0.875rem; /* Texto pequeno */
+      color: #64748b; /* Cinza suave */
+    }
+
+    /* Contador "1 de 4" */
+    .progress-count {
+      font-size: 0.875rem;
+      font-weight: 500; /* Peso médio para destaque */
+      color: #3b82f6; /* Azul para indicar progresso */
+    }
+
+    /* Barra de progresso vazia (fundo) */
+    .progress-bar {
+      height: 6px; /* Altura fina */
+      background-color: #e2e8f0; /* Cinza muito claro */
+      border-radius: 9999px; /* Totalmente arredondada */
+      overflow: hidden; /* Para o preenchimento não ultrapassar */
+    }
+
+    /* Preenchimento da barra de progresso */
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%); /* Gradiente azul */
+      border-radius: 9999px;
+      transition: width 0.5s ease; /* Animação suave ao mudar */
+    }
+
+    /* ============================================
+   CONTAINER DE PERGUNTAS
+   ============================================ */
+   
+   /* Container principal das perguntas */
+    .question-container {
+      position: relative; /* Para animações */
+      min-height: 400px; /* Altura mínima para manter layout */
+      overflow: hidden; /* Esconde elementos fora da área */
+    }
+
+    /* Card individual de cada pergunta */
+    .question-card {
+      background: white; /* Fundo branco limpo */
+      border-radius: 16px; /* Cantos bem arredondados */
+      padding: 2rem; /* Padding generoso */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); /* Sombra suave */
+      border: 1px solid #e2e8f0; /* Borda cinza muito clara */
+    }
+
+    /* Título principal da página "Conte-nos mais sobre você" */
+    .page-title {
+      font-size: 2rem; /* Texto grande */
+      font-weight: 700; /* Negrito forte */
+      color: #1e293b; /* Azul escuro */
+      margin-bottom: 0.5rem; /* Pequeno espaço abaixo */
+      text-align: center; /* Centralizado */
+    }
+
+    /* Subtítulo "Responda algumas perguntas rápidas..." */
+    .page-subtitle {
+      font-size: 1rem; /* Tamanho normal */
+      color: #64748b; /* Cinza suave */
+      margin-bottom: 2rem; /* Espaço generoso abaixo */
+      text-align: center; /* Centralizado */
+      line-height: 1.5; /* Espaçamento entre linhas */
+    }
+
+    /* ============================================
+   ESTADOS E ANIMAÇÕES DAS PERGUNTAS
+   ============================================ */
+   
+   /* Esconde o card quando não está ativo */
+    .question-card.hidden {
+      display: none;
+    }
+
+    /* Animação de saída do card (slide para esquerda) */
+    .question-card.slide-out {
+      animation: slideOut 0.4s ease-in-out forwards;
+    }
+
+    /* Animação de entrada do card (slide da direita) */
+    .question-card.slide-in {
+      animation: slideIn 0.4s ease-out forwards;
+    }
+
+    /* Badge "Pergunta 1 de 4" */
+    .question-number {
+      display: inline-block;
+      padding: 0.25rem 0.75rem; /* Padding pequeno */
+      background-color: #eff6ff; /* Fundo azul muito claro */
+      color: #3b82f6; /* Texto azul */
+      font-size: 0.75rem; /* Texto pequeno */
+      font-weight: 600; /* Negrito médio */
+      border-radius: 9999px; /* Totalmente arredondado */
+      margin-bottom: 1rem; /* Espaço abaixo */
+    }
+
+    /* Texto da pergunta principal */
+    .question-text {
+      font-size: 1.25rem; /* Texto médio-grande */
+      font-weight: 600; /* Negrito médio */
+      color: #1e293b; /* Azul escuro */
+      margin-bottom: 1.5rem; /* Espaço generoso abaixo */
+      line-height: 1.4; /* Espaçamento confortável entre linhas */
+    }
+
+    /* ============================================
+   LISTA DE OPÇÕES DE RESPOSTA
+   ============================================ */
+   
+   /* Container da lista de opções */
+    .options-list {
+      display: flex;
+      flex-direction: column; /* Empilha verticalmente */
+      gap: 0.75rem; /* Espaço entre opções */
+    }
+
+    /* Botão individual de cada opção */
+    .option-btn {
+      display: flex;
+      align-items: center; /* Alinha verticalmente */
+      gap: 1rem; /* Espaço entre letra e texto */
+      width: 100%; /* Ocupa toda largura */
+      padding: 1rem 1.25rem; /* Padding confortável */
+      background-color: #f8fafc; /* Fundo cinza muito claro */
+      border: 2px solid #e2e8f0; /* Borda cinza clara */
+      border-radius: 12px; /* Cantos arredondados */
+      cursor: pointer; /* Indica clicável */
+      transition: all 0.2s ease; /* Animação suave */
+      text-align: left; /* Texto alinhado à esquerda */
+    }
+
+    /* Efeito hover nos botões de opção */
+    .option-btn:hover {
+      background-color: #eff6ff; /* Fundo azul claro */
+      border-color: #93c5fd; /* Borda azul mais intensa */
+      transform: translateX(4px); /* Pequeno movimento para direita */
+    }
+
+    /* Círculo da letra (A, B, C, D) */
+    .option-letter {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Centraliza a letra */
+      background-color: white; /* Fundo branco */
+      border: 2px solid #cbd5e1; /* Borda cinza */
+      border-radius: 8px; /* Cantos arredondados */
+      font-weight: 600; /* Negrito médio */
+      color: #64748b; /* Cinza */
+      font-size: 0.875rem; /* Texto pequeno */
+      flex-shrink: 0; /* Não encolhe */
+      transition: all 0.2s ease; /* Animação suave */
+    }
+
+    /* Efeito hover no círculo da letra */
+    .option-btn:hover .option-letter {
+      background-color: #3b82f6; /* Fundo azul */
+      border-color: #3b82f6; /* Borda azul */
+      color: white; /* Letra branca */
+    }
+
+    /* Texto da opção */
+    .option-text {
+      color: #334155; /* Cinza escuro */
+      font-size: 1rem; /* Tamanho normal */
+    }
+
+    /* ============================================
+   PERGUNTA COM TEXTO (INPUT)
+   ============================================ */
+   
+   /* Container da pergunta de texto */
+    .text-input-container {
+      display: flex;
+      flex-direction: column; /* Empilha textarea e botão */
+      gap: 1rem; /* Espaço entre elementos */
+    }
+
+    /* Campo de texto para resposta aberta */
+    .text-input {
+      width: 100%; /* Largura total */
+      padding: 1rem; /* Padding interno */
+      border: 2px solid #e2e8f0; /* Borda cinza clara */
+      border-radius: 12px; /* Cantos arredondados */
+      font-size: 1rem; /* Tamanho normal */
+      resize: vertical; /* Permite redimensionar verticalmente */
+      min-height: 120px; /* Altura mínima */
+      font-family: inherit; /* Usa mesma fonte do site */
+      transition: all 0.2s ease; /* Animação suave */
+    }
+
+    /* Estado focus do campo de texto */
+    .text-input:focus {
+      outline: none; /* Remove outline padrão */
+      border-color: #3b82f6; /* Borda azul */
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); /* Sombra azul clara */
+    }
+
+    /* Texto do placeholder */
+    .text-input::placeholder {
+      color: #94a3b8; /* Cinza bem claro */
+    }
+
+    /* Botão de envio/finalização */
+    .btn-submit {
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Centraliza conteúdo */
+      gap: 0.5rem; /* Espaço entre texto e ícone */
+      padding: 0.875rem 1.5rem; /* Padding confortável */
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); /* Gradiente azul */
+      color: white; /* Texto branco */
+      border: none; /* Sem borda */
+      border-radius: 10px; /* Cantos arredondados */
+      font-size: 1rem; /* Tamanho normal */
+      font-weight: 500; /* Peso médio */
+      cursor: pointer; /* Indica clicável */
+      transition: all 0.2s ease; /* Animação suave */
+      align-self: flex-end; /* Alinhado à direita */
+    }
+
+    /* Efeito hover no botão de envio */
+    .btn-submit:hover {
+      transform: translateY(-2px); /* Levanta levemente */
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35); /* Sombra azul intensa */
+    }
+
+    /* Estado desabilitado do botão */
+    .btn-submit:disabled {
+      opacity: 0.5; /* Mais transparente */
+      cursor: not-allowed; /* Cursor não permitido */
+      transform: none; /* Remove transform */
+      box-shadow: none; /* Remove sombra */
+    }
+
+    /* Ícone da seta no botão */
+    .btn-submit svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* ============================================
+   TELA DE CONCLUSÃO
+   ============================================ */
+   
+   /* Container da tela de conclusão */
+    .completion-screen {
+      text-align: center; /* Centraliza todo conteúdo */
+      padding: 3rem 2rem; /* Padding generoso */
+    }
+
+    /* Ícone de sucesso (check verde) */
+    .completion-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #10b981 0%, #34d399 100%); /* Gradiente verde */
+      border-radius: 50%; /* Círculo perfeito */
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Centraliza o check */
+      margin: 0 auto 1.5rem; /* Centralizado com espaço abaixo */
+      animation: fadeIn 0.5s ease-out; /* Animação de aparição */
+    }
+
+    /* Ícone check dentro do círculo */
+    .completion-icon svg {
+      width: 40px;
+      height: 40px;
+      color: white; /* Check branco */
+    }
+
+    /* Título de conclusão */
+    .completion-title {
+      font-size: 1.5rem; /* Texto grande */
+      font-weight: 600; /* Negrito médio */
+      color: #1e293b; /* Azul escuro */
+      margin-bottom: 0.5rem; /* Pequeno espaço abaixo */
+    }
+
+    /* Texto de confirmação */
+    .completion-text {
+      color: #64748b; /* Cinza suave */
+      font-size: 1rem; /* Tamanho normal */
+    }
+
+    /* ============================================
+   ANIMAÇÕES (KEYFRAMES)
+   ============================================ */
+   
+   /* Animação de saída: slide para esquerda com fade */
+    @keyframes slideOut {
+      from {
+        opacity: 1; /* Totalmente visível */
+        transform: translateX(0); /* Posição original */
+      }
+      to {
+        opacity: 0; /* Totalmente transparente */
+        transform: translateX(-100px); /* Move para esquerda */
+      }
+    }
+
+    /* Animação de entrada: slide da direita com fade */
+    @keyframes slideIn {
+      from {
+        opacity: 0; /* Totalmente transparente */
+        transform: translateX(100px); /* Começa da direita */
+      }
+      to {
+        opacity: 1; /* Totalmente visível */
+        transform: translateX(0); /* Posição final */
+      }
+    }
+
+    /* Animação de aparição com escala */
+    @keyframes fadeIn {
+      from {
+        opacity: 0; /* Transparente */
+        transform: scale(0.95); /* 95% do tamanho */
+      }
+      to {
+        opacity: 1; /* Totalmente visível */
+        transform: scale(1); /* Tamanho normal */
+      }
+    }
+
+    /* ============================================
+   RESPONSIVIDADE (MOBILE-FIRST)
+   ============================================ */
+   
+   /* Ajustes para telas pequenas (mobile) */
+    @media (max-width: 640px) {
+      /* Header mais compacto */
+      .header {
+        padding: 1rem; /* Reduz padding */
+      }
+
+      /* Texto do logo menor */
+      .logo-text {
+        font-size: 1rem; /* Reduz tamanho */
+      }
+
+      /* Esconde texto do botão, mantém apenas ícone */
+      .btn-login span {
+        display: none; /* Economiza espaço */
+      }
+
+      /* Conteúdo principal com menos padding */
+      .main {
+        padding: 2rem 1rem; /* Reduz espaçamento */
+      }
+
+      /* Cards com padding menor */
+      .question-card {
+        padding: 1.5rem; /* Mais compacto */
+      }
+
+      /* Texto das perguntas um pouco menor */
+      .question-text {
+        font-size: 1.125rem; /* Reduz para legibilidade */
+      }
+    }
