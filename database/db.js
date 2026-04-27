@@ -7,8 +7,14 @@ db.exec(`
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT NOT NULL,
     email TEXT UNIQUE NOT NULL,
+    senha TEXT NOT NULL,
     telefone TEXT,
-    localizacao TEXT,
+    data_nascimento TEXT,
+    genero TEXT,
+    cep TEXT,
+    endereco TEXT,
+    cidade TEXT,
+    estado TEXT,
     habilidades TEXT,        -- JSON array: ["programação", "design", "cozinha"]
     disponibilidade TEXT,    -- "semanal", "fim_de_semana", "eventual"
     areas_interesse TEXT,    -- JSON array: ["educação", "saúde", "meio_ambiente"]
