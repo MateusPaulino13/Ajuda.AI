@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const crypto = require("crypto");
 const db = require("../database/db");
+const WatsonxClient = require("../services/watsonx");
  
 // ============================================
 // HELPERS
@@ -107,7 +108,7 @@ function calculaScore(usuario, projeto) {
 // ROTA POST /
 // ============================================
  
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   const {
     habilidades,
     experiencia_opcao,
@@ -194,14 +195,29 @@ router.post("/", (req, res) => {
         insertMatch.run(usuarioId, r.projeto.id, r.score);
       });
  
-      return { usuarioId, recomendacoes };
+      return { usuarioId, recomendacoes, usuario };
     })();
+
+    // Chama o agente de IA para gerar recomendação personalizada
+    let recomendacaoIA = null;
+    try {
+      const prompt = construirPromptRecomendacao(resultado.usuario, resultado.recomendacoes);
+      const respostaIA = await WatsonxClient.chatWithAgent([
+        { role: "system", content: "Você é um assistente especialista em matching de voluntariado. Dê recomendações personalizadas, empáticas e práticas em português do Brasil." },
+        { role: "user", content: prompt }
+      ]);
+      recomendacaoIA = respostaIA.choices?.[0]?.message?.content || null;
+    } catch (iaError) {
+      console.error("Erro ao chamar IA para recomendação:", iaError.message);
+      // Não quebra a requisição se a IA falhar
+    }
  
     res.status(201).json({
       mensagem: "Questionário enviado com sucesso!",
       usuario_id: resultado.usuarioId,
       recomendacoes: resultado.recomendacoes,
       total_encontrado: resultado.recomendacoes.length,
+      recomendacao_ia: recomendacaoIA,
     });
   } catch (error) {
     console.error("Erro no questionário:", error);
@@ -214,5 +230,38 @@ router.post("/", (req, res) => {
     res.status(500).json({ erro: "Erro ao processar questionário." });
   }
 });
+
+// ============================================
+// HELPER: Construir prompt para a IA
+// ============================================
+function construirPromptRecomendacao(usuario, recomendacoes) {
+  let prompt = `Perfil do voluntário:\n`;
+  prompt += `- Nome: ${usuario.nome}\n`;
+  prompt += `- Habilidades: ${usuario.habilidades}\n`;
+  prompt += `- Disponibilidade: ${usuario.disponibilidade}\n`;
+  prompt += `- Áreas de interesse: ${usuario.areas_interesse}\n`;
+  prompt += `- Experiência: ${usuario.experiencia}\n`;
+  if (usuario.localizacao) {
+    prompt += `- Localização: ${usuario.localizacao}\n`;
+  }
+
+  prompt += `\nProjetos recomendados (máx 5):\n`;
+  if (recomendacoes.length === 0) {
+    prompt += `Nenhum projeto compatível encontrado no momento.\n`;
+  } else {
+    recomendacoes.forEach((r, idx) => {
+      const p = r.projeto;
+      prompt += `${idx + 1}. ${p.titulo} (${p.organizacao || "Sem organização"}) — Score: ${r.score}%\n`;
+      prompt += `   Descrição: ${p.descricao}\n`;
+      prompt += `   Categoria: ${p.categoria}, Localização: ${p.localizacao}, Urgência: ${p.urgencia}/5\n`;
+      if (r.match_habilidades.length > 0) {
+        prompt += `   Habilidades compatíveis: ${r.match_habilidades.join(", ")}\n`;
+      }
+    });
+  }
+
+  prompt += `\nCom base nesses dados, escreva uma recomendação personalizada e empática para o voluntário, sugerindo quais projetos fazem mais sentido para ele/ela e por quê. Mantenha o tom acolhedor e motivador.`;
+  return prompt;
+}
  
 module.exports = router;

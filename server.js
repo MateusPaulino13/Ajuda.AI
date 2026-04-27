@@ -9,8 +9,9 @@ app.use(express.json());
 
 //rotas
 app.use("/api/agente", require("./routes/agente"));
-app.use("/api/usuarios", require("./routes/usuarios"));
-app.use("/api/recomendacoes", require("./routes/recomendacoes"));
+app.use("/api/usuarios", require("./routes/usuario"));
+app.use("/api/recomendacoes", require("./routes/recomendacao"));
+app.use("/api/questionario", require("./routes/questionario"));
 
 app.get("/health", (req, res) => {
   res.json({ status: "ok", database: "SQLite local" });

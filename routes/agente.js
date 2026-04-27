@@ -73,7 +73,7 @@ router.post("/conversar", async (req, res) => {
 });
 
 //pegar a proxima pergunta do onboarding
-router.get("onboarding/:etapa", (req, res) => {
+router.get("/onboarding/:etapa", (req, res) => {
   const etapa = parseInt(req.params.etapa);
   const pergunta = perguntas_onboarding[etapa];
 
