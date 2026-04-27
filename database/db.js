@@ -15,6 +15,7 @@ db.exec(`
     endereco TEXT,
     cidade TEXT,
     estado TEXT,
+    localizacao TEXT,            -- ✅ ADICIONADO
     habilidades TEXT,        -- JSON array: ["programação", "design", "cozinha"]
     disponibilidade TEXT,    -- "semanal", "fim_de_semana", "eventual"
     areas_interesse TEXT,    -- JSON array: ["educação", "saúde", "meio_ambiente"]
